@@ -1,6 +1,7 @@
 package com.wiki.steps;
 
 import com.wiki.BrowserDriver;
+import com.wiki.pageobjects.WikipediaHomePage;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
@@ -8,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 
 public class StepDefinitions {
     BrowserDriver browserDriver = new BrowserDriver();
+    WikipediaHomePage wikiHomePage = new WikipediaHomePage();
     public static WebDriver driver;
 
     @Before
@@ -25,6 +27,11 @@ public class StepDefinitions {
 
     @Given("^a search string is entered with English as selected language$")
     public void enterSearchString() {
-
+        wikiHomePage.enterSearchString(driver, "testing");
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
