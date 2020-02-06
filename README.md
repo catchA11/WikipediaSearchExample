@@ -1,0 +1,2 @@
+# WikipediaSearchExample
+Example automated tests
