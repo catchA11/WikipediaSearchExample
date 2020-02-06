@@ -1,6 +1,7 @@
 package com.wiki.steps;
 
 import com.wiki.BrowserDriver;
+import com.wiki.pageobjects.ResultsPage;
 import com.wiki.pageobjects.WikipediaHomePage;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
@@ -9,10 +10,14 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.WebDriver;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class StepDefinitions {
     BrowserDriver browserDriver = new BrowserDriver();
     WikipediaHomePage wikiHomePage = new WikipediaHomePage();
+    ResultsPage resultsPage = new ResultsPage();
     public static WebDriver driver;
+    private String searchString = "pineapple";
 
     @Before
     public void openWikiHomePage() {
@@ -29,7 +34,7 @@ public class StepDefinitions {
 
     @Given("^a search string is entered with English as selected language$")
     public void enterSearchString() {
-        wikiHomePage.enterSearchString(driver, "testing");
+        wikiHomePage.enterSearchString(driver, searchString);
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
@@ -44,6 +49,7 @@ public class StepDefinitions {
 
     @Then("^the results page title matches the search string$")
     public void verifyResultsTileMatchesSearch() {
-
+        String pageTitle = resultsPage.getFirstHeader();
+        assertThat(pageTitle).isEqualToIgnoringCase(searchString);
     }
 }
