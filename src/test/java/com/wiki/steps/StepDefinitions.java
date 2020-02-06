@@ -5,6 +5,8 @@ import com.wiki.pageobjects.WikipediaHomePage;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 import org.openqa.selenium.WebDriver;
 
 public class StepDefinitions {
@@ -33,5 +35,15 @@ public class StepDefinitions {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    @When("^the search button is clicked$")
+    public void clickSearchButton() {
+        wikiHomePage.clickSearch();
+    }
+
+    @Then("^the results page title matches the search string$")
+    public void verifyResultsTileMatchesSearch() {
+
     }
 }
