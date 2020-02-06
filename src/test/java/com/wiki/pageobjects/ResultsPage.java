@@ -8,7 +8,6 @@ import static com.wiki.steps.StepDefinitions.driver;
 public class ResultsPage {
     public String getFirstHeader() {
         WebElement firstHeading = driver.findElement(By.id("firstHeading"));
-        String heading = firstHeading.getText();
-        return heading;
+        return firstHeading.getText();
     }
 }
