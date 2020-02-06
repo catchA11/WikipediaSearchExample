@@ -1,6 +1,7 @@
 package com.wiki.steps;
 
 import com.wiki.BrowserDriver;
+import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import org.openqa.selenium.WebDriver;
@@ -15,6 +16,11 @@ public class StepDefinitions {
 
         driver = browserDriver.getBrowserDriver();
         driver.get(PATH);
+    }
+
+    @After
+    public void cleanUp() {
+        browserDriver.closeBrowser();
     }
 
     @Given("^a search string is entered with English as selected language$")
