@@ -39,3 +39,4 @@ acceptance/
 .built
 .compared
 
+/.idea/
