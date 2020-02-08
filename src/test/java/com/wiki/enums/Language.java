@@ -7,22 +7,22 @@ public enum Language {
     ENGLISH("English", "en", "car"),
     FRENCH("French", "fr", "voiture");
 
-    private String description;
-    private String languageCode;
+    private String name;
+    private String code;
     private String searchText;
 
-    Language(String description, String languageCode, String searchText) {
-        this.description = description;
-        this.languageCode = languageCode;
+    Language(String name, String code, String searchText) {
+        this.name = name;
+        this.code = code;
         this.searchText = searchText;
     }
 
-    public String getDescription() {
-        return description;
+    public String getName() {
+        return name;
     }
 
-    public String getLanguageCode() {
-        return languageCode;
+    public String getCode() {
+        return code;
     }
 
     public String getSearchText() {
@@ -33,7 +33,7 @@ public enum Language {
 
     static {
         for (Language language : Language.values()) {
-            lookup.put(language.getDescription(), language);
+            lookup.put(language.getName(), language);
         }
     }
 

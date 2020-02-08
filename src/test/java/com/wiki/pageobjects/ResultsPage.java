@@ -6,8 +6,14 @@ import static com.wiki.steps.StepDefinitions.driver;
 
 
 public class ResultsPage {
+
     public String getFirstHeader() {
         WebElement firstHeading = driver.findElement(By.id("firstHeading"));
         return firstHeading.getText();
+    }
+
+    public WebElement findLinkToResultsInEnglish() {
+        WebElement link = driver.findElement(By.linkText("English"));
+        return link;
     }
 }

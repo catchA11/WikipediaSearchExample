@@ -6,11 +6,14 @@ import com.wiki.pageobjects.ResultsPage;
 import com.wiki.pageobjects.HomePage;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
+import static com.wiki.enums.Language.ENGLISH;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class StepDefinitions {
@@ -47,7 +50,18 @@ public class StepDefinitions {
 
     @Then("^the results page title matches the search string$")
     public void verifyResultsTileMatchesSearch() {
+        verifyResultsTitle(language.getSearchText());
+    }
+
+    private void verifyResultsTitle(String expectedTitle) {
         String pageTitle = resultsPage.getFirstHeader();
-        assertThat(pageTitle).isEqualToIgnoringCase(language.getSearchText());
+        assertThat(pageTitle).containsIgnoringCase(expectedTitle);
+    }
+
+    @And("^a link is provided to results in English$")
+    public void verifyLinkToEnglishResults() {
+        WebElement link = resultsPage.findLinkToResultsInEnglish();
+        link.click();
+        verifyResultsTitle(ENGLISH.getSearchText());
     }
 }

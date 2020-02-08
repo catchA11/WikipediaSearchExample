@@ -5,7 +5,8 @@ Scenario: English Search
   When the search button is clicked
   Then the results page title matches the search string
 
-  Scenario: French Search
+  Scenario: Search with different language selected
     Given a search string is entered with French as selected language
     When the search button is clicked
     Then the results page title matches the search string
+    And a link is provided to results in English

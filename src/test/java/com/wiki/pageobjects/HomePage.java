@@ -24,6 +24,6 @@ public class HomePage {
 
     public void setLanguage(Language language) {
         Select languageDropdown = new Select(driver.findElement(By.id("searchLanguage")));
-        languageDropdown.selectByValue(language.getLanguageCode());
+        languageDropdown.selectByValue(language.getCode());
     }
 }
