@@ -1,8 +1,9 @@
 package com.wiki.steps;
 
 import com.wiki.BrowserDriver;
+import com.wiki.enums.Language;
 import com.wiki.pageobjects.ResultsPage;
-import com.wiki.pageobjects.WikipediaHomePage;
+import com.wiki.pageobjects.HomePage;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
@@ -14,10 +15,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class StepDefinitions {
     BrowserDriver browserDriver = new BrowserDriver();
-    WikipediaHomePage wikiHomePage = new WikipediaHomePage();
+    HomePage homePage = new HomePage();
     ResultsPage resultsPage = new ResultsPage();
     public static WebDriver driver;
-    private String searchString = "pineapple";
+    private static Language language;
 
     @Before
     public void openWikiHomePage() {
@@ -32,24 +33,21 @@ public class StepDefinitions {
         browserDriver.closeBrowser();
     }
 
-    @Given("^a search string is entered with English as selected language$")
-    public void enterSearchString() {
-        wikiHomePage.enterSearchString(driver, searchString);
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    @Given("^a search string is entered with (English|French) as selected language$")
+    public void enterSearchString(String languageDescription) {
+        language = Language.lookUp(languageDescription);
+        homePage.setLanguage(language);
+        homePage.enterSearchString(driver, language.getSearchText());
     }
 
     @When("^the search button is clicked$")
     public void clickSearchButton() {
-        wikiHomePage.clickSearch();
+        homePage.clickSearch();
     }
 
     @Then("^the results page title matches the search string$")
     public void verifyResultsTileMatchesSearch() {
         String pageTitle = resultsPage.getFirstHeader();
-        assertThat(pageTitle).isEqualToIgnoringCase(searchString);
+        assertThat(pageTitle).isEqualToIgnoringCase(language.getSearchText());
     }
 }

@@ -1,11 +1,14 @@
 package com.wiki.pageobjects;
 
+import com.wiki.enums.Language;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
+
 import static com.wiki.steps.StepDefinitions.driver;
 
-public class WikipediaHomePage {
+public class HomePage {
     private static final String SEARCH_TEXT_BOX_ID = "searchInput";
     private static final String SEARCH_BUTTON_CLASS_NAME = "pure-button";
 
@@ -17,5 +20,10 @@ public class WikipediaHomePage {
     public void clickSearch() {
         WebElement searchButton = driver.findElement(By.className(SEARCH_BUTTON_CLASS_NAME));
         searchButton.click();
+    }
+
+    public void setLanguage(Language language) {
+        Select languageDropdown = new Select(driver.findElement(By.id("searchLanguage")));
+        languageDropdown.selectByValue(language.getLanguageCode());
     }
 }
