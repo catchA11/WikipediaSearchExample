@@ -8,9 +8,11 @@ import org.openqa.selenium.WebElement;
 import static com.wiki.steps.StepDefinitions.driver;
 
 public class ResultsPage {
+    private static final String FIRST_HEADING_ID = "firstHeading";
+    private static final String LANGUAGE_OPTIONS_ID = "#p-lang-label";
 
     public String getFirstHeader() {
-        WebElement firstHeading = driver.findElement(By.id("firstHeading"));
+        WebElement firstHeading = driver.findElement(By.id(FIRST_HEADING_ID));
         return firstHeading.getText();
     }
 
@@ -21,7 +23,7 @@ public class ResultsPage {
 
     public boolean isLanguagesOptionControlDisplayed() {
         try {
-            WebElement languageOptions = driver.findElement(By.cssSelector("#p-lang-label"));
+            WebElement languageOptions = driver.findElement(By.cssSelector(LANGUAGE_OPTIONS_ID));
             return languageOptions.getText().contains("Languages");
         } catch (NoSuchElementException e) {
             return false;

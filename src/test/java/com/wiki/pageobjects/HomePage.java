@@ -11,6 +11,7 @@ import static com.wiki.steps.StepDefinitions.driver;
 public class HomePage {
     private static final String SEARCH_TEXT_BOX_ID = "searchInput";
     private static final String SEARCH_BUTTON_CLASS_NAME = "pure-button";
+    private static final String LANGUAGE_DROPDOWN_ID = "searchLanguage";
 
     public void enterSearchString(WebDriver driver, String searchString) {
         WebElement searchTextField = driver.findElement(By.id(SEARCH_TEXT_BOX_ID));
@@ -23,7 +24,7 @@ public class HomePage {
     }
 
     public void setLanguage(Language language) {
-        Select languageDropdown = new Select(driver.findElement(By.id("searchLanguage")));
+        Select languageDropdown = new Select(driver.findElement(By.id(LANGUAGE_DROPDOWN_ID)));
         languageDropdown.selectByValue(language.getCode());
     }
 }
