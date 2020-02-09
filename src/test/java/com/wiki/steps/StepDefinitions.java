@@ -20,7 +20,7 @@ public class StepDefinitions {
     HomePage homePage = new HomePage();
     ResultsPage resultsPage = new ResultsPage();
     public static WebDriver driver;
-    private static Language language;
+    private Language language;
 
     @Before
     public void openWikiHomePage() {
