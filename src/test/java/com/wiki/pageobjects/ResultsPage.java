@@ -1,11 +1,11 @@
 package com.wiki.pageobjects;
 
+import com.wiki.enums.Language;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 
 import static com.wiki.steps.StepDefinitions.driver;
-
 
 public class ResultsPage {
 
@@ -14,9 +14,9 @@ public class ResultsPage {
         return firstHeading.getText();
     }
 
-    public WebElement findLinkToResultsInEnglish() {
-        WebElement link = driver.findElement(By.linkText("English"));
-        return link;
+    public WebElement findLinkToResultsIn(String languageDescription) {
+        Language language = Language.lookUp(languageDescription);
+        return driver.findElement(By.linkText(language.getLinkTitle()));
     }
 
     public boolean isLanguagesOptionControlDisplayed() {
@@ -26,5 +26,10 @@ public class ResultsPage {
         } catch (NoSuchElementException e) {
             return false;
         }
+    }
+
+    public void changeLanguageTo(String language) {
+        WebElement link = findLinkToResultsIn(language);
+        link.click();
     }
 }

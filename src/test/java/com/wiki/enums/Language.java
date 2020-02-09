@@ -4,17 +4,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum Language {
-    ENGLISH("English", "en", "house"),
-    FRENCH("French", "fr", "maison"),
-    GERMAN("German", "de", "haus");
+    ENGLISH("English", "en", "English", "house"),
+    FRENCH("French", "fr", "Français", "maison"),
+    GERMAN("German", "de", "Deutsch", "haus");
 
     private String name;
     private String code;
+    private String linkTitle;
     private String searchText;
 
-    Language(String name, String code, String searchText) {
+    Language(String name, String code, String linkTitle, String searchText) {
         this.name = name;
         this.code = code;
+        this.linkTitle = linkTitle;
         this.searchText = searchText;
     }
 
@@ -24,6 +26,10 @@ public enum Language {
 
     public String getCode() {
         return code;
+    }
+
+    public String getLinkTitle() {
+        return linkTitle;
     }
 
     public String getSearchText() {

@@ -60,9 +60,20 @@ public class StepDefinitions {
                 .isTrue();
     }
 
-    @And("^a link is provided to results in English$")
+    @When("^the option is chosen to display the results in (.*)$")
+    public void displayResultsInLanguage(String language) {
+        resultsPage.changeLanguageTo(language);
+    }
+
+    @Then("^the results are displayed in (.*)$")
+    public void verifyResultsDisplayedIn(String languageDescription) {
+        language = Language.lookUp(languageDescription);
+        verifyResultsTitle(language.getSearchText());
+    }
+
+    @And("^a link is provided to display the results in English$")
     public void verifyLinkToEnglishResults() {
-        WebElement link = resultsPage.findLinkToResultsInEnglish();
+        WebElement link = resultsPage.findLinkToResultsIn("English");
         link.click();
         verifyResultsTitle(ENGLISH.getSearchText());
     }
