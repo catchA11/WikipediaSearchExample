@@ -20,21 +20,13 @@ public enum Language {
         this.searchText = searchText;
     }
 
-    public String getName() {
-        return name;
-    }
+    public String getName() { return name; }
 
-    public String getCode() {
-        return code;
-    }
+    public String getCode() { return code; }
 
-    public String getLinkTitle() {
-        return linkTitle;
-    }
+    public String getLinkTitle() { return linkTitle; }
 
-    public String getSearchText() {
-        return searchText;
-    }
+    public String getSearchText() { return searchText; }
 
     private static final Map<String, Language> lookup = new HashMap<>();
 
