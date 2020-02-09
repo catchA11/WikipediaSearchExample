@@ -53,13 +53,6 @@ public class StepDefinitions {
         assertThat(pageTitle).containsIgnoringCase(expectedTitle);
     }
 
-    @And("^search results page is available in other languages$")
-    public void verifyOptionProvidedToDisplayResultsInMultipleLanguages() {
-        assertThat(resultsPage.isLanguagesOptionControlDisplayed())
-                .withFailMessage("Option to display search results in other languages not found")
-                .isTrue();
-    }
-
     @When("^the option is chosen to display the results in (.*)$")
     public void displayResultsInLanguage(String language) {
         resultsPage.changeLanguageTo(language);
@@ -69,6 +62,13 @@ public class StepDefinitions {
     public void verifyResultsDisplayedIn(String languageDescription) {
         language = Language.lookUp(languageDescription);
         verifyResultsTitle(language.getSearchText());
+    }
+
+    @And("^search results page is available in other languages$")
+    public void verifyOptionProvidedToDisplayResultsInMultipleLanguages() {
+        assertThat(resultsPage.isLanguagesOptionControlDisplayed())
+                .withFailMessage("Option to display search results in other languages not found")
+                .isTrue();
     }
 
     @And("^a link is provided to display the results in English$")
