@@ -4,8 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum Language {
-    ENGLISH("English", "en", "car"),
-    FRENCH("French", "fr", "voiture");
+    ENGLISH("English", "en", "house"),
+    FRENCH("French", "fr", "maison"),
+    GERMAN("German", "de", "haus");
 
     private String name;
     private String code;

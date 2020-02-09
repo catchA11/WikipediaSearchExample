@@ -7,7 +7,6 @@ import com.wiki.pageobjects.HomePage;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
-import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.WebDriver;
@@ -36,15 +35,11 @@ public class StepDefinitions {
         browserDriver.closeBrowser();
     }
 
-    @Given("^a search string is entered with (English|French) as selected language$")
+    @When("^a search is entered with (English|French|German) as selected language$")
     public void enterSearchString(String languageDescription) {
         language = Language.lookUp(languageDescription);
         homePage.setLanguage(language);
         homePage.enterSearchString(driver, language.getSearchText());
-    }
-
-    @When("^the search button is clicked$")
-    public void clickSearchButton() {
         homePage.clickSearch();
     }
 
@@ -56,6 +51,13 @@ public class StepDefinitions {
     private void verifyResultsTitle(String expectedTitle) {
         String pageTitle = resultsPage.getFirstHeader();
         assertThat(pageTitle).containsIgnoringCase(expectedTitle);
+    }
+
+    @And("^search results page is available in other languages$")
+    public void verifyOptionProvidedToDisplayResultsInMultipleLanguages() {
+        assertThat(resultsPage.isLanguagesOptionControlDisplayed())
+                .withFailMessage("Option to display search results in other languages not found")
+                .isTrue();
     }
 
     @And("^a link is provided to results in English$")
