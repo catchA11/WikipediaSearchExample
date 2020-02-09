@@ -1,4 +1,4 @@
-Feature: Wikipedia Search
+Feature: Wikipedia Search scenarios
 
   Scenario: English Search
     When a search is entered with English as selected language
